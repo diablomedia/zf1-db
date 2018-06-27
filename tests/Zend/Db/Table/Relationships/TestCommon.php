@@ -677,8 +677,7 @@ abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_Test
                 $tableBugsCustom->fetchAll(
                     $tableBugsCustom->getAdapter()
                                     ->quoteInto("$reported_by = ?", 'mmouse')
-                    )
-                ,
+                    ),
             'Expecting cascading delete to have reduced dependent rows to zero'
             );
     }
