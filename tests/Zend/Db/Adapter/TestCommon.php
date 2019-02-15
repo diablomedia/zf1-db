@@ -1973,8 +1973,8 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         //try to update
         $this->_db->update(
             $tableName,
-                           array('veryveryveryverylongidentifier' => 3),
-                           array($this->_db->quoteIdentifier('id') . ' = 1')
+            array('veryveryveryverylongidentifier' => 3),
+            array($this->_db->quoteIdentifier('id') . ' = 1')
         );
 
         // check if the row was inserted as expected
