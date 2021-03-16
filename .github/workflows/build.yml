@@ -11,14 +11,14 @@ jobs:
         name: PHP ${{ matrix.php-versions }} ${{ matrix.composer-args }}
         services:
             mysql:
-                image: mysql:latest
+                image: mysql/mysql-server:5.7
                 env:
                     MYSQL_DATABASE: zftest
                     MYSQL_USER: github
                     MYSQL_PASSWORD: githubpass
                 ports:
-                    - 3306:3306
-                options: --health-cmd="mysqladmin ping -h 127.0.0.1" --health-interval=10s --health-timeout=20s --health-retries=10
+                    - 3306
+                options: --health-cmd="mysql health ping" --health-interval=10s --health-timeout=10s --health-retries=10
             postgres:
                 image: postgres:latest
                 env:
