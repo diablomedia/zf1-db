@@ -329,6 +329,8 @@ abstract class Zend_Db_Statement_TestCommon extends Zend_Db_TestSetup
                 'Expecting object of type Zend_Db_Statement_Exception, got ' . get_class($e)
             );
             $this->assertRegExp('#invalid fetch mode#i', $e->getMessage());
+        } catch (ValueError $e) {
+            $this->assertRegExp('#must be a bitmask of PDO::FETCH_#i', $e->getMessage());
         }
     }
 
