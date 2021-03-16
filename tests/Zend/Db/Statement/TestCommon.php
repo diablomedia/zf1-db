@@ -447,6 +447,8 @@ abstract class Zend_Db_Statement_TestCommon extends Zend_Db_TestSetup
                 $e instanceof Zend_Db_Statement_Exception,
                 'Expecting object of type Zend_Db_Statement_Exception, got ' . get_class($e)
             );
+        } catch (ValueError $e) {
+            $this->assertRegExp('#must be a bitmask of PDO::FETCH_#i', $e->getMessage());
         }
         $stmt->closeCursor();
     }
@@ -596,6 +598,8 @@ abstract class Zend_Db_Statement_TestCommon extends Zend_Db_TestSetup
                 $e instanceof Zend_Db_Statement_Exception,
                 'Expecting object of type Zend_Db_Statement_Exception, got ' . get_class($e)
             );
+        } catch (ValueError $e) {
+            $this->assertRegExp('#must be a bitmask of PDO::FETCH_#i', $e->getMessage());
         }
         $stmt->closeCursor();
     }
