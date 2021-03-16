@@ -205,7 +205,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         // TableSpecial.php contains class bugs_products too.
         $table = new zfbugs_products(array('db' => $this->_db));
         $info  = $table->info();
-        $this->assertStringContainsString('name', array_keys($info));
+        $this->assertContains('name', array_keys($info));
         $this->assertEquals('zfbugs_products', $info['name']);
     }
 
@@ -217,7 +217,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
             array('name' => $tableName)
         );
         $info = $table->info();
-        $this->assertStringContainsString('name', array_keys($info));
+        $this->assertContains('name', array_keys($info));
         $this->assertEquals($tableName, $info['name']);
     }
 
@@ -230,7 +230,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
             array('name' => $tableName, 'schema' => $schemaName)
         );
         $info = $table->info();
-        $this->assertStringContainsString('schema', array_keys($info));
+        $this->assertContains('schema', array_keys($info));
         $this->assertEquals($schemaName, $info['schema']);
     }
 
