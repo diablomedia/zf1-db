@@ -71,7 +71,7 @@ jobs:
             - name: Code Style Check
               run: composer style-check -- --format=checkstyle | cs2pr
             - name: Test
-              run: composer test-with-coverage
+              run: composer test-with-coverage -- --verbose
             - name: Upload Coverage
               run: bash <(curl -s https://codecov.io/bash) -f ./clover.xml
     merge-me:
