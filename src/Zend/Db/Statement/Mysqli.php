@@ -199,7 +199,11 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
         }
 
         // execute the statement
-        $retval = $this->_stmt->execute();
+        try {
+            $retval = $this->_stmt->execute();
+        } catch (mysqli_sql_exception $e) {
+            $retval = false;
+        }
         if ($retval === false) {
             throw new Zend_Db_Statement_Mysqli_Exception('Mysqli statement execute error : ' . $this->_stmt->error, $this->_stmt->errno);
         }
