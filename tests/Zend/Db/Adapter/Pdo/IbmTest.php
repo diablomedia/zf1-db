@@ -74,7 +74,8 @@ class Zend_Db_Adapter_Pdo_IbmTest extends Zend_Db_Adapter_Db2Test
             $this->fail('Expected to catch Zend_Db_Adapter_Exception');
         } catch (Zend_Exception $e) {
             $this->assertInstanceOf(
-                Zend_Db_Adapter_Exception::class, $e,
+                Zend_Db_Adapter_Exception::class,
+                $e,
                 'Expecting object of type Zend_Db_Adapter_Exception, got ' . get_class($e)
             );
         }

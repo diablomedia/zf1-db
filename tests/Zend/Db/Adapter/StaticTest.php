@@ -123,7 +123,8 @@ class Zend_Db_Adapter_StaticTest extends PHPUnit\Framework\TestCase
             $this->fail('Expected to catch Zend_Db_Exception');
         } catch (Zend_Exception $e) {
             $this->assertInstanceOf(
-                Zend_Db_Exception::class, $e,
+                Zend_Db_Exception::class,
+                $e,
                 'Expected exception of type Zend_Db_Exception, got ' . get_class($e)
             );
             $this->assertEquals($e->getMessage(), 'Adapter name must be specified in a string');
@@ -157,7 +158,8 @@ class Zend_Db_Adapter_StaticTest extends PHPUnit\Framework\TestCase
             $this->fail('Expected to catch Zend_Db_Adapter_Exception');
         } catch (Zend_Exception $e) {
             $this->assertInstanceOf(
-                Zend_Db_Adapter_Exception::class, $e,
+                Zend_Db_Adapter_Exception::class,
+                $e,
                 'Expected exception of type Zend_Db_Adapter_Exception, got ' . get_class($e)
             );
             $this->assertEquals("Configuration must have a key for 'dbname' that names the database instance", $e->getMessage());
@@ -191,7 +193,8 @@ class Zend_Db_Adapter_StaticTest extends PHPUnit\Framework\TestCase
             $this->fail('Expected to catch Zend_Db_Exception');
         } catch (Zend_Exception $e) {
             $this->assertInstanceOf(
-                Zend_Db_Exception::class, $e,
+                Zend_Db_Exception::class,
+                $e,
                 'Expected exception of type Zend_Db_Exception, got ' . get_class($e)
             );
             $this->assertEquals($e->getMessage(), 'Adapter name must be specified in a string');

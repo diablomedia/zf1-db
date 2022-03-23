@@ -126,7 +126,8 @@ abstract class Zend_Db_TestSetup extends PHPUnit\Framework\TestCase
         } catch (Zend_Exception $e) {
             $this->_db = null;
             $this->assertInstanceOf(
-                Zend_Db_Adapter_Exception::class, $e,
+                Zend_Db_Adapter_Exception::class,
+                $e,
                 'Expecting Zend_Db_Adapter_Exception, got ' . get_class($e)
             );
             $this->markTestSkipped($e->getMessage());
