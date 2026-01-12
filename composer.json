@@ -43,7 +43,8 @@
         "phpstan/phpstan": "2.1.17",
         "friendsofphp/php-cs-fixer": "3.75.0",
         "maglnet/composer-require-checker": "^3.0.0",
-        "phpro/grumphp-shim": "^2.0.0"
+        "phpro/grumphp-shim": "^2.0.0",
+        "diablomedia/zendframework1-paginator": "dev-php-85 as 1.0.5"
     },
     "include-path": [
         "src/"
@@ -72,5 +73,10 @@
         "ext-sqlsrv": "For SQL Server DB adapters",
         "ext-ibm_db2": "For IBM DB2 DB adapters"
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-php-85": "1.0.x-dev"
+        }
+    }
 }
