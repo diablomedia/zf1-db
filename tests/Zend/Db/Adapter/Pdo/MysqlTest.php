@@ -279,8 +279,16 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
      */
     public function testZF2101()
     {
+        // For PHP 8.5+ we want to use the Pdo\Mysql::ATTR_USE_BUFFERED_QUERY constant,
+        // otherwise use PDO::MYSQL_ATTR_USE_BUFFERED_QUERY
+        if (version_compare(PHP_VERSION, '8.5.0', '>=')) {
+            $bufferedQueryConst = Pdo\Mysql::ATTR_USE_BUFFERED_QUERY;
+        } else {
+            $bufferedQueryConst = PDO::MYSQL_ATTR_USE_BUFFERED_QUERY;
+        }
+
         $params                   = $this->_util->getParams();
-        $params['driver_options'] = array(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true);
+        $params['driver_options'] = array($bufferedQueryConst => true);
         $db                       = Zend_Db::factory($this->getDriver(), $params);
 
         // Set default bound value
