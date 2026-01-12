@@ -44,12 +44,20 @@ class Zend_Db_TestUtil_Pdo_Mysql extends Zend_Db_TestUtil_Mysqli
     {
         $constants = parent::getParams($constants);
 
+        // For PHP 8.5+ we want to use the Pdo\Mysql::ATTR_USE_BUFFERED_QUERY constant,
+        // otherwise use PDO::MYSQL_ATTR_USE_BUFFERED_QUERY
+        if (version_compare(PHP_VERSION, '8.5.0', '>=')) {
+            $bufferedQueryConst = Pdo\Mysql::ATTR_USE_BUFFERED_QUERY;
+        } else {
+            $bufferedQueryConst = PDO::MYSQL_ATTR_USE_BUFFERED_QUERY;
+        }
+
         if (!isset($constants['driver_options'])) {
             $constants['driver_options'] = array();
         }
 
-        if (!isset($constants['driver_options'][PDO::MYSQL_ATTR_USE_BUFFERED_QUERY])) {
-            $constants['driver_options'][PDO::MYSQL_ATTR_USE_BUFFERED_QUERY] = true;
+        if (!isset($constants['driver_options'][$bufferedQueryConst])) {
+            $constants['driver_options'][$bufferedQueryConst] = true;
         }
 
         return $constants;
