@@ -1529,7 +1529,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
                 restore_error_handler();
                 throw new Exception($errstr, $errno);
             },
-            E_ALL
+            E_NOTICE | E_USER_NOTICE
         );
 
         $this->expectException(Exception::class);
