@@ -1524,17 +1524,22 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
 
     public function testTableSetDefaultMetadataCacheWriteAccess()
     {
+        set_error_handler(
+            static function ($errno, $errstr): void {
+                restore_error_handler();
+                throw new Exception($errstr, $errno);
+            },
+            E_NOTICE | E_USER_NOTICE
+        );
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Failed saving metadata to metadataCache');
+
         $cache = $this->_getCacheNowrite();
         Zend_Db_Table_Abstract::setDefaultMetadataCache($cache);
 
-        try {
-            $bugsTable = $this->_getTable('My_ZendDbTable_TableBugs');
-            $primary   = $bugsTable->info(Zend_Db_Table_Abstract::PRIMARY);
-            $this->fail('Expected to catch PHPUnit\Framework\Error\Error');
-        } catch (PHPUnit\Framework\Error\Error $e) {
-            $this->assertEquals(E_USER_NOTICE, $e->getCode(), 'Error type not E_USER_NOTICE');
-            $this->assertEquals('Failed saving metadata to metadataCache', $e->getMessage());
-        }
+        $bugsTable = $this->_getTable('My_ZendDbTable_TableBugs');
+        $primary   = $bugsTable->info(Zend_Db_Table_Abstract::PRIMARY);
 
         Zend_Db_Table_Abstract::setDefaultMetadataCache(null);
     }

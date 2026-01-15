@@ -256,7 +256,7 @@ class Zend_Db_Select
             $correlationName     = current($correlationNameKeys);
         }
 
-        if (!array_key_exists($correlationName, $this->_parts[self::FROM])) {
+        if (!array_key_exists((string) $correlationName, $this->_parts[self::FROM])) {
             throw new Zend_Db_Select_Exception('No table has been specified for the FROM clause');
         }
 
